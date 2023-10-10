@@ -1,0 +1,25 @@
+:root {
+    --principal1: #2a2258;
+    --principal2: ##c89961;
+  }
+
+.logo{
+    background-image: url("../img/ETHNOS\ \ -\ Logo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+
+.imgheader{
+    max-width: 918px;
+    max-height: 612px;
+}
+
+
+body{
+    color: var(--principal1);
+}
