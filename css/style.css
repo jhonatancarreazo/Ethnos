@@ -2,7 +2,12 @@
     --principal1: #2a2258;
     --principal2: ##c89961;
   }
-
+.w3-xlarge{
+    top: 0;
+    position: sticky;
+    z-index: 100;
+    background-color: #cccccc15;
+}
 .logo{
     background-image: url("../img/ETHNOS\ \ -\ Logo.png");
     background-position: center;
@@ -19,6 +24,10 @@
     max-height: 612px;
 }
 
+.navlist{
+    list-style: none;
+    padding-left: 0;
+}
 
 body{
     color: var(--principal1);
