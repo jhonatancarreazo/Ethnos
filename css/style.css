@@ -38,3 +38,38 @@ ul#lista-carrito{
 }
 
 
+.container{
+    
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    grid-template-rows: repeat(1, 2fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+.card{
+
+border: 1px solid lightgray;
+box-shadow: 2px 2px 8px 4px #d3d3d3d1;
+border-radius:15px;
+font-family: sans-serif;
+}
+
+.card__title{
+font-size: 15px;
+padding: 10px 10px 0 10px;;
+}
+
+.card__body{
+padding: 10px;
+}
+
+.card img{
+width: 100%;
+}
+
+.card__footer{
+background: #6699ff;
+border-radius:0 0 15px 15px;
+padding: 10px;
+text-align:center;
+}
