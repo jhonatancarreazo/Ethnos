@@ -1,6 +1,6 @@
 :root {
     --principal1: #2a2258;
-    --principal2: ##c89961;
+    --principal2: #c89961;
   }
 .w3-xlarge{
     top: 0;
@@ -32,3 +32,9 @@
 body{
     color: var(--principal1);
 }
+
+ul#lista-carrito{
+    list-style: none;
+}
+
+

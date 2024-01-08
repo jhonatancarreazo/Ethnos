@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethnos</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
-    <body class="w3-content" style="max-width:1200px">
 
-        <!-- Barra lateral/menú -->
-        <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index: 3; width: 250px; display: none;" id="mySidebar">
-          <div class="w3-container w3-display-container w3-padding-16">
-            <h3 class="w3-wide"><div class="logo"></div></h3>
-          </div>
-          <!-- <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ethnos</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="./css/test.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+  <body class="w3-content" style="max-width:1200px">
+
+    <!-- Barra lateral/menú -->
+    <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index: 3; width: 250px; display: none;"
+      id="mySidebar">
+      <div class="w3-container w3-display-container w3-padding-16">
+        <h3 class="w3-wide">
+          <div class="logo"></div>
+        </h3>
+      </div>
+      <!-- <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
             <a href="#" class="w3-bar-item w3-button">Camisas</a>
             <a href="#" class="w3-bar-item w3-button">Vestidos</a>
             <a href="#" class="w3-bar-item w3-button">Jeans</a>
@@ -27,158 +34,122 @@
             <a href="#" class="w3-bar-item w3-button">Blazers</a>
             <a href="#" class="w3-bar-item w3-button">Zapatos</a>
           </div> -->
-          <ul class="w3-padding-64 w3-large w3-text-grey navlist" style="font-weight:bold">
-            <li><a href="#" class="w3-bar-item w3-button">Camisas</a></li>
-            <li><a href="#" class="w3-bar-item w3-button">Vestidos</a></li>
-            <li><a href="#" class="w3-bar-item w3-button">Jeans</a></li>
-            <li><a href="#" class="w3-bar-item w3-button">Chaquetas</a></li>
-            <li><a href="#" class="w3-bar-item w3-button">Ropa de gimnasio</a></li>
-            <li><a href="#" class="w3-bar-item w3-button">Blazers</a></li>
-            <li><a href="#" class="w3-bar-item w3-button">Zapatos</a></li>
-          </ul>
-          <a href="#footer" class="w3-bar-item w3-button w3-padding">Contacto</a> 
-          <a href="" class="w3-bar-item w3-button w3-padding">Boletín informativo</a> 
-          <a href="#footer" class="w3-bar-item w3-button w3-padding">Suscribirse</a>
-        </nav>
+      <ul class="w3-padding-64 w3-large w3-text-grey navlist" style="font-weight:bold" id="categories-list">
         
-        <!-- CONTENIDO DE LA PÁGINA -->
-        <div class="w3-main" style="margin-left:250px">   
-          <!-- Encabezado superior -->
-          <header class="w3-container w3-xlarge">
-            <p class="w3-right">
-              <i class="fa fa-shopping-cart w3-margin-right"></i>
-              <i class="fa fa-search"></i>
-            </p>
-          </header>
-        
-          <!-- Encabezado de imagen -->
-          <div class="w3-display-container w3-container">
-            <img src="./img/pexels-apostolos-vamvouras-2285500.jpg" alt="Jeans" style="width:100%" class="imgheader">
-            <div class="w3-display-topleft w3-text-white" style="padding:24px 48px;">
-              <h1 class="w3-jumbo w3-hide-small">Nuevos arribos</h1>
-              <h1 class="w3-hide-large w3-hide-medium">Nuevos arribos</h1>
-              <h1 class="w3-hide-small">COLECCIÓN 2016</h1>
-              <p><a href="#jeans" class="w3-button w3-black w3-padding-large w3-large">COMPRAR AHORA</a></p>
+      </ul>
+      <a href="#footer" class="w3-bar-item w3-button w3-padding">Contacto</a>
+      <a href="" class="w3-bar-item w3-button w3-padding">Boletín informativo</a>
+      <a href="#footer" class="w3-bar-item w3-button w3-padding">Suscribirse</a>
+    </nav>
+
+    <!-- CONTENIDO DE LA PÁGINA -->
+    <div class="w3-main" style="margin-left:250px">
+      <!-- Encabezado superior -->
+      <header class="w3-container w3-xlarge">
+        <p class="w3-right">
+          <i class="fa fa-shopping-cart w3-margin-right" id="modalcarrito"></i>
+          <i class="fa fa-search"></i>
+        <section class="w3-modal">
+          <div class="w3-modal-content">
+            <button class="w3-button w3-red" id="close">Cerrar</button>
+            <h1>Carrito de Compras</h1>
+            <div id="productos"></div>
+            <div id="carrito">
+              <ul id="lista-carrito"></ul>
+              <hr>
+              <p>Total: $<span id="total">0.00</span></p>
             </div>
+
           </div>
-        
-          <div class="w3-container w3-text-grey" id="jeans">
-            <p>8 artículos</p>
-          </div>
-        
-          <!-- Cuadrícula de productos -->
-          <div class="w3-row w3-grayscale">
-            <div class="w3-col l3 s6">
-              <div class="w3-container">
-                <img src="https://picsum.photos/200/300?grayscale" style="width:100%">
-                <p>Jeans Skinny Rasgados<br><b>$24.99</b></p>
-              </div>
-              <div class="w3-container">
-                <img src="https://picsum.photos/200/300?wind" style="width:100%">
-                <p>Jeans Mega Rasgados<br><b>$19.99</b></p>
-              </div>
-            </div>
-        
-            <div class="w3-col l3 s6">
-              <div class="w3-container">
-                <div class="w3-display-container">
-                  <img src="https://picsum.photos/200/300?fashion" style="width:100%">
-                  <span class="w3-tag w3-display-topleft">Nuevo</span>
-                </div>
-                <p>Jeans Mega Rasgados<br><b>$19.99</b></p>
-              </div>
-              <div class="w3-container">
-                <img src="https://picsum.photos/200/300?fashion" style="width:100%">
-                <p>Jeans Skinny Lavados<br><b>$20.50</b></p>
-              </div>
-            </div>
-        
-            <div class="w3-col l3 s6">
-              <div class="w3-container">
-                <img src="https://picsum.photos/200/300?fashion" style="width:100%">
-                <p>Jeans Skinny Lavados<br><b>$20.50</b></p>
-              </div>
-              <div class="w3-container">
-                <div class="w3-display-container">
-                  <img src="https://picsum.photos/200/300?fashion" style="width:100%">
-                  <span class="w3-tag w3-display-topleft">Oferta</span>
-                </div>
-                <p>Jeans Skinny Vintage<br><b class="w3-text-red">$14.99</b></p>
-              </div>
-            </div>
-        
-            <div class="w3-col l3 s6">
-              <div class="w3-container">
-                <img src="https://picsum.photos/200/300?fashion" style="width:100%">
-                <p>Jeans Skinny Vintage<br><b>$14.99</b></p>
-              </div>
-              <div class="w3-container">
-                <img src="https://picsum.photos/200/300?fashion" style="width:100%">
-                <p>Jeans Skinny Rasgados<br><b>$24.99</b></p>
-              </div>
-            </div>
-          </div>
-        
-          <!-- Sección de suscripción -->
-          <div class="w3-container w3-black w3-padding-32">
-            <h1>Suscríbete</h1>
-            <p>Para recibir ofertas especiales y trato VIP:</p>
-            <p><input class="w3-input w3-border" type="text" placeholder="Ingresa tu correo electrónico" style="width:100%"></p>
-            <button type="button" class="w3-button w3-red w3-margin-bottom">Suscribirse</button>
-          </div>
-          
-          <!-- Pie de página -->
-          <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
-            <div class="w3-row-padding">
-              <div class="w3-col s4">
-                <h4>Contacto</h4>
-                <p>¿Preguntas? Adelante.</p>
-                <form action="/action_page.php" target="_blank">
-                  <p><input class="w3-input w3-border" type="text" placeholder="Nombre" name="Nombre" required=""></p>
-                  <p><input class="w3-input w3-border" type="text" placeholder="Correo electrónico" name="Correo electrónico" required=""></p>
-                  <p><input class="w3-input w3-border" type="text" placeholder="Asunto" name="Asunto" required=""></p>
-                  <p><input class="w3-input w3-border" type="text" placeholder="Mensaje" name="Mensaje" required=""></p>
-                  <button type="submit" class="w3-button w3-block w3-black">Enviar</button>
-                </form>
-              </div>
-        
-              <div class="w3-col s4">
-                <h4>Acerca de nosotros</h4>
-                <p><a href="./pages/nosotros.html">Acerca de nosotros</a></p>
-                <p><a href="#">Estamos contratando</a></p>
-                <p><a href="#">Soporte</a></p>
-                <p><a href="#">Encuentra una tienda</a></p>
-                <p><a href="#">Envío</a></p>
-                <p><a href="#">Pago</a></p>
-                <p><a href="#">Tarjeta de regalo</a></p>
-                <p><a href="#">Devoluciones</a></p>
-                <p><a href="#">Ayuda</a></p>
-              </div>
-        
-              <div class="w3-col s4 w3-justify">
-                <h4>Tienda</h4>
-                <p><i class="fa fa-fw fa-map-marker"></i>Cartagena, Colombia</p>
-                <p><i class="fa fa-fw fa-phone"></i><a href="tel:+573022906437">302 2906437</a></p>
-                <p><i class="fa fa-fw fa-envelope"></i> contacto@ethnos.com</p>
-                <h4>Aceptamos</h4>
-                <p><i class="fa fa-fw fa-cc-amex"></i> Amex</p>
-                <p><i class="fa fa-fw fa-credit-card"></i> Tarjeta de crédito</p>
-                <br>
-                <i class="fa fa-facebook-official w3-hover-opacity w3-large"></i>
-                <i class="fa fa-instagram w3-hover-opacity w3-large"></i>
-                <i class="fa fa-snapchat w3-hover-opacity w3-large"></i>
-                <i class="fa fa-pinterest-p w3-hover-opacity w3-large"></i>
-                <i class="fa fa-twitter w3-hover-opacity w3-large"></i>
-                <i class="fa fa-linkedin w3-hover-opacity w3-large"></i>
-              </div>
-            </div>
-          </footer>
-        
-          <div class="w3-black w3-center w3-padding-24">Ethnos 2023.</a></div>
-        
-          <!-- Fin del contenido de la página -->
+        </section>
+        </p>
+      </header>
+
+
+      <!-- Encabezado de imagen -->
+      <div class="w3-display-container w3-container">
+        <img src="./img/pexels-apostolos-vamvouras-2285500.jpg" alt="Jeans" style="width:100%" class="imgheader">
+        <div class="w3-display-topleft w3-text-white" style="padding:24px 48px;">
+          <h1 class="w3-jumbo w3-hide-small">Nuevos arribos</h1>
+          <h1 class="w3-hide-large w3-hide-medium">Nuevos arribos</h1>
+          <h1 class="w3-hide-small">COLECCIÓN 2016</h1>
+          <p><a href="#jeans" class="w3-button w3-black w3-padding-large w3-large">COMPRAR AHORA</a></p>
         </div>
-    
-        
-        </body>
+      </div>
+
+      <div class="w3-container w3-text-grey" id="jeans">
+        <p>8 artículos</p>
+      </div>
+
+      <!-- Cuadrícula de productos -->
+
+      <div class="container" id="products-container">
+
+      </div>
+
+      <!-- Sección de suscripción -->
+      <div class="w3-container w3-black w3-padding-32">
+        <h1>Suscríbete</h1>
+        <p>Para recibir ofertas especiales y trato VIP:</p>
+        <p><input class="w3-input w3-border" type="text" placeholder="Ingresa tu correo electrónico" style="width:100%">
+        </p>
+        <button type="button" class="w3-button w3-red w3-margin-bottom">Suscribirse</button>
+      </div>
+
+      <!-- Pie de página -->
+      <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+        <div class="w3-row-padding">
+          <div class="w3-col s4">
+            <h4>Contacto</h4>
+            <p>¿Preguntas? Adelante.</p>
+            <form action="/action_page.php" target="_blank">
+              <p><input class="w3-input w3-border" type="text" placeholder="Nombre" name="Nombre" required=""></p>
+              <p><input class="w3-input w3-border" type="text" placeholder="Correo electrónico"
+                  name="Correo electrónico" required=""></p>
+              <p><input class="w3-input w3-border" type="text" placeholder="Asunto" name="Asunto" required=""></p>
+              <p><input class="w3-input w3-border" type="text" placeholder="Mensaje" name="Mensaje" required=""></p>
+              <button type="submit" class="w3-button w3-block w3-black">Enviar</button>
+            </form>
+          </div>
+
+          <div class="w3-col s4">
+            <h4>Acerca de nosotros</h4>
+            <p><a href="./pages/nosotros.html">Acerca de nosotros</a></p>
+            <p><a href="#">Estamos contratando</a></p>
+            <p><a href="#">Soporte</a></p>
+            <p><a href="#">Encuentra una tienda</a></p>
+            <p><a href="#">Envío</a></p>
+            <p><a href="#">Pago</a></p>
+            <p><a href="#">Tarjeta de regalo</a></p>
+            <p><a href="#">Devoluciones</a></p>
+            <p><a href="#">Ayuda</a></p>
+          </div>
+
+          <div class="w3-col s4 w3-justify">
+            <h4>Tienda</h4>
+            <p><i class="fa fa-fw fa-map-marker"></i>Cartagena, Colombia</p>
+            <p><i class="fa fa-fw fa-phone"></i><a href="tel:+573022906437">302 2906437</a></p>
+            <p><i class="fa fa-fw fa-envelope"></i> contacto@ethnos.com</p>
+            <h4>Aceptamos</h4>
+            <p><i class="fa fa-fw fa-cc-amex"></i> Amex</p>
+            <p><i class="fa fa-fw fa-credit-card"></i> Tarjeta de crédito</p>
+            <br>
+            <i class="fa fa-facebook-official w3-hover-opacity w3-large"></i>
+            <i class="fa fa-instagram w3-hover-opacity w3-large"></i>
+            <i class="fa fa-snapchat w3-hover-opacity w3-large"></i>
+            <i class="fa fa-pinterest-p w3-hover-opacity w3-large"></i>
+            <i class="fa fa-twitter w3-hover-opacity w3-large"></i>
+            <i class="fa fa-linkedin w3-hover-opacity w3-large"></i>
+          </div>
+        </div>
+      </footer>
+
+      <div class="w3-black w3-center w3-padding-24">Ethnos 2023.</a></div>
+
+      <!-- Fin del contenido de la página -->
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+
 </html>
