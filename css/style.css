@@ -32,11 +32,19 @@
 body{
     color: var(--principal1);
 }
-
+h1{
+    padding-left: 20px;
+}
 ul#lista-carrito{
     list-style: none;
 }
 
+ul#lista-carrito li{border-bottom: solid 1px gray;}
+
+.carito p{
+    font-weight: bold;
+    margin: 10px;
+}
 
 .container{
     
@@ -73,4 +81,16 @@ width: 100%;
 
 padding: 10px;
 text-align:center;
+}
+
+.red{
+    text-transform: uppercase;
+    font-weight: lighter;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.209);
+    padding-bottom: 5px;
+}
+
+.eliminar-producto{
+    color: red;
+    font-size: larger;
 }

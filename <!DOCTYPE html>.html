@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de Compras</title>
+</head>
+<body>
+
+<h1>Carrito de Compras</h1>
+
+<button onclick="cargarProductos()">Cargar Productos</button>
+<div id="productos"></div>
+<div id="carrito">
+  <h2>Carrito</h2>
+  <ul id="lista-carrito"></ul>
+  <p>Total: $<span id="total">0.00</span></p>
+</div>
+
+<script>
+  const apiUrl = 'https://fakestoreapi.com/products';
+  let carrito = [];
+
+  function cargarProductos() {
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => mostrarProductos(data))
+      .catch(error => console.error('Error:', error));
+  }
+
+  function mostrarProductos(productos) {
+    const productosDiv = document.getElementById('productos');
+    productosDiv.innerHTML = '';
+
+    productos.forEach(producto => {
+      const productoDiv = document.createElement('div');
+      productoDiv.innerHTML = `
+        <p>${producto.title} - $${producto.price}</p>
+        <button onclick="agregarAlCarrito(${producto.id}, '${producto.title}', ${producto.price})">Agregar al Carrito</button>
+      `;
+      productosDiv.appendChild(productoDiv);
+    });
+  }
+
+  function agregarAlCarrito(id, title, price) {
+    const productoEnCarrito = carrito.find(item => item.id === id);
+
+    if (productoEnCarrito) {
+      productoEnCarrito.cantidad++;
+    } else {
+      carrito.push({ id, title, price, cantidad: 1 });
+    }
+
+    mostrarCarrito();
+  }
+
+  function mostrarCarrito() {
+    const listaCarrito = document.getElementById('lista-carrito');
+    const totalSpan = document.getElementById('total');
+    listaCarrito.innerHTML = '';
+    
+    let total = 0;
+
+    carrito.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.title} x${item.cantidad} - $${item.price * item.cantidad}`;
+      listaCarrito.appendChild(li);
+
+      total += item.price * item.cantidad;
+    });
+
+    totalSpan.textContent = total.toFixed(2);
+  }
+</script>
+
+</body>
+</html>

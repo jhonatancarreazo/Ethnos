@@ -1,4 +1,5 @@
 const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
 const getProduct = async () => {
     try {
         const response = await fetch('https://fakestoreapi.com/products');
@@ -16,56 +17,39 @@ const getProduct = async () => {
                 <div class="card__body"><img src="${image}" alt="${titulo}"></div>
                 <div class="card__footer">
                     <p>${price}</p>
-                    <a href="" class="w3-button w3-black w3-padding-large" onclick="agregarAlCarrito(event,${productId}, '${titulo}', ${price})">AGREGAR AL CARRITO</a>
+                    <a href="#" class="w3-button w3-black w3-padding-large"  onclick="agregarAlCarrito(event,${productId}, '${titulo}', ${price})">AGREGAR AL CARRITO</a>
                 </div>
             </div>`;
         });
 
-        // Establece el contenido HTML una vez fuera del bucle
         document.getElementById("products-container").innerHTML = productosHTML;
 
     } catch (error) {
         mostrarErrorModal('Error al obtener productos: ' + error.message);
     }
-}
-
-function mostrarErrorModal(mensaje) {
-    const errorModal = document.getElementById('error-modal');
-    const errorModalMensaje = document.getElementById('error-modal-mensaje');
-
-    errorModalMensaje.textContent = mensaje;
-    errorModal.style.display = 'block';
-}
-
-const cerrarErrorModal = document.getElementById('cerrar-error-modal');
-cerrarErrorModal.addEventListener('click', () => {
-    const errorModal = document.getElementById('error-modal');
-    errorModal.style.display = 'none';
-});
+};
 
 const getCategory = async () => {
     try {
         const response = await fetch('https://fakestoreapi.com/products/categories');
         const categories = await response.json();
-        let categoriasHTML = '';
+        let categoriasHTML = '<ul>';
 
         categories.forEach(categoria => {
             categoriasHTML += `<li><a href="#" class="w3-bar-item w3-button">${categoria}</a></li>`;
         });
 
-        // Establece el contenido HTML una vez fuera del bucle
+        categoriasHTML += '</ul>';
         document.getElementById("categories-list").innerHTML = categoriasHTML;
     } catch (error) {
-        mostrarErrorModal('Error al obtener las categoria: ' + error.message);
+        mostrarErrorModal('Error al obtener las categorias: ' + error.message);
     }
-}
-
-
+};
 
 function agregarAlCarrito(event, id, title, price) {
-    event.preventDefault(); // Evita la recarga de la página
+    event.preventDefault();
     const productoEnCarrito = carrito.find(item => item.id === id);
-    
+
     if (productoEnCarrito) {
         productoEnCarrito.cantidad++;
     } else {
@@ -77,57 +61,79 @@ function agregarAlCarrito(event, id, title, price) {
 }
 
 function mostrarCarrito() {
-    const listaCarrito = document.getElementById('lista-carrito');
     const totalSpan = document.getElementById('total');
-    listaCarrito.innerHTML = '';
-
+    let carritoHTML = '';
     let total = 0;
 
-    carrito.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.title} x${item.cantidad} - $${item.price * item.cantidad}`;
-        listaCarrito.appendChild(li);
+    if (carrito.length > 0) {
+        carrito.forEach(item => {
+            const subtotal = item.price * item.cantidad;
+            total += subtotal;
 
-        total += item.price * item.cantidad;
-    });
+            carritoHTML += `
+                <div>
+                    <p class="red">${item.title} x ${item.cantidad} - $${subtotal.toFixed(2)} <i class="fa fa-times-circle-o eliminar-producto"  data-product-id="${item.id}" aria-hidden="true"></i></p>
+                </div>`;
+        });
+
+        const contenidoSweetAlert = `${carritoHTML}<h3>Total: $${total.toFixed(2)}</h3>`;
+
+        openModal.addEventListener('click', (e) => {
+            Swal.fire({
+                title: 'Carrito de Compras',
+                html: contenidoSweetAlert,
+                color: 'white',
+                background: 'url(../img/modal_bg.jpg)',
+                confirmButtonText: `Pagar`,
+                cancelButtonText: `Cerrar`,
+                showCancelButton: true,
+                didOpen: () => {
+                    document.querySelectorAll('.eliminar-producto').forEach(btn => {
+                        btn.addEventListener('click', function () {
+                            const productId = parseInt(this.dataset.productId, 10);
+                            eliminarProducto(productId);
+                            Swal.close();
+                        });
+                    });
+                },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    pagar();
+                }
+            });
+        });
+    } else {
+        openModal.addEventListener('click', (e) => {
+            Swal.fire({
+                title: 'Carrito de Compras',
+                html: '<p>El carrito está vacío.</p>',
+                color: 'white',
+                background: 'url(../img/modal_bg.jpg)',
+                confirmButtonText: `Cerrar`,
+            });
+        });
+    }
 
     totalSpan.textContent = total.toFixed(2);
 }
 
-
 function pagar() {
-    const mensajePago = '¡Gracias por tu compra!';
+    Swal.fire({
+        title: 'Gracias por tu compra!',
+        html: '¡Gracias por tu compra!.<br> Apreciamos tu preferencia. Si tienes alguna pregunta o necesitas asistencia, no dudes en contactarnos.<br> ¡Esperamos que disfrutes tu producto!',
+        icon: 'success',
+        confirmButtonText: 'Cerrar',
+        color: 'white',
+        background: 'url(../img/modal_bg.jpg)'
+    });
 
-    // Muestra un mensaje de éxito en un modal
-    mostrarMensajeModal(mensajePago);
-
-    // Limpia el carrito después de realizar el pago
-    carrito.length = 0;
-    mostrarCarrito(); // Actualiza la interfaz para reflejar el carrito vacío
-    guardarCarritoEnLocalStorage(); // Guarda el carrito vacío en el almacenamiento local
-
-
+    vaciarCarrito();
 }
 
 const pay = document.getElementById("buy");
-pay.addEventListener('click', function(event){
+pay.addEventListener('click', function (event) {
     event.preventDefault();
     pagar();
-    
-});
-
-function mostrarMensajeModal(mensaje) {
-    const mensajeModal = document.getElementById('mensaje-modal');
-    const contenidoMensajeModal = document.getElementById('contenido-mensaje-modal');
-
-    contenidoMensajeModal.textContent = mensaje;
-    mensajeModal.style.display = 'block';
-}
-
-const cerrarMensajeModal = document.getElementById('cerrar-mensaje-modal');
-cerrarMensajeModal.addEventListener('click', () => {
-    const mensajeModal = document.getElementById('mensaje-modal');
-    mensajeModal.style.display = 'none';
 });
 
 function guardarCarritoEnLocalStorage() {
@@ -138,17 +144,40 @@ const openModal = document.getElementById("modalcarrito");
 const closeModal = document.getElementById("close");
 const modal = document.querySelector('.w3-modal');
 
-openModal.addEventListener('click', (e) => {
-    e.preventDefault();
-    modal.style.display = "block";
-});
-
 closeModal.addEventListener("click", (e) => {
     e.preventDefault();
     modal.style.display = "none";
 });
 
+function vaciarCarrito() {
+    carrito.length = 0;
+    mostrarCarrito();
+    guardarCarritoEnLocalStorage();
+}
+
+function eliminarProducto(id) {
+    const index = carrito.findIndex(item => item.id === id);
+
+    if (index !== -1) {
+        if (carrito[index].cantidad > 1) {
+            carrito[index].cantidad--;
+        } else {
+            carrito.splice(index, 1);
+        }
+
+        mostrarCarrito();
+        guardarCarritoEnLocalStorage();
+    }
+}
+
+document.getElementById("products-container").addEventListener('click', function (event) {
+    const target = event.target;
+
+    if (target.classList.contains('eliminar-producto')) {
+        const productId = parseInt(target.dataset.productId, 10);
+        eliminarProducto(productId);
+    }
+});
+
 getProduct();
-getCategory();  
-pagar();
-mostrarCarrito();
+getCategory();
